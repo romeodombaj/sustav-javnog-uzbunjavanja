@@ -1,0 +1,9 @@
+.autoTestContainer {
+  background-color: rgb(69, 69, 69);
+  padding: 1rem;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 90%;
+  border-radius: 1.1rem;
+}

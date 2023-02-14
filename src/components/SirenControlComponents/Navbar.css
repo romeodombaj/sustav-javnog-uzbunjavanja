@@ -1,0 +1,39 @@
+.navbarContainer {
+  background-color: rgb(53, 53, 53);
+  display: flex;
+  width: 20%;
+  min-width: 250px;
+  margin: auto;
+  margin-top: 1rem;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 2rem;
+  height: 4rem;
+  position: relative;
+}
+
+.navbarItem {
+  color: white;
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: bold;
+  font-size: large;
+}
+
+.selectorV {
+  height: 100%;
+  width: 50%;
+  min-height: 60px;
+  background-color: rgba(240, 248, 255, 0.082);
+  border-radius: 2rem;
+  position: absolute;
+  transition: 0.5s;
+}
+
+.selectorPOS1 {
+  left: 0%;
+}
+
+.selectorPOS2 {
+  left: 50%;
+}
