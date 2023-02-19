@@ -3,26 +3,44 @@ import "./TownToggleButton.css";
 
 const TownToggleButton = (props) => {
   const [isHovering, setIsHovering] = useState(false);
-  const [isActive, setIsActive] = useState(props.sirenInfo.activity);
   const [townFullClass, setTownFullClass] = useState("singleTownButton");
+  const [singleTownClassName, setSingleTownClassName] =
+    useState("singleTownButton");
+  const [fUpdate, setFUpdate] = useState(false); // force update state
+  const [prevButtonState, setPrevButtonState] = useState(5);
 
-  let singleTownClassName = "singleTownButton";
-  const singleTownClassNameActive = "singleTownButton isActive";
+  const filterValue = [
+    "singleTownButtonIsActive1",
+    "singleTownButtonIsActive2",
+    "singleTownButtonIsActive3",
+    "singleTownButtonIsActive4",
+  ];
 
   const onHoverHandler = () => {
     setIsHovering((prevState) => !prevState);
   };
 
   const changeActivityStatus = () => {
-    setIsActive((prevState) => !prevState);
-    props.sirenInfo.activity = !isActive;
+    if (props.typeFilterValue == prevButtonState) {
+      props.sirenInfo.activity = !props.sirenInfo.activity;
+      setFUpdate((prevState) => !prevState);
+    } else {
+      setSingleTownClassName(
+        "singleTownButton " + filterValue[props.typeFilterValue]
+      );
+      setPrevButtonState(props.typeFilterValue);
+    }
   };
 
-  if (props.sirenInfo.activity == true) {
-    singleTownClassName = "singleTownButton isActive";
-  } else {
-    singleTownClassName = "singleTownButton";
-  }
+  useEffect(() => {
+    if (props.sirenInfo.activity) {
+      setSingleTownClassName(
+        "singleTownButton " + filterValue[props.typeFilterValue]
+      );
+    } else {
+      setSingleTownClassName("singleTownButton");
+    }
+  }, [props.sirenInfo.activity]);
 
   return (
     <div>

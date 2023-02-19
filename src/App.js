@@ -1,6 +1,6 @@
 import "./App.css";
 import SirenControlPanel from "./components/SirenControlComponents/SirenControlPanel";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/SirenControlComponents/Navbar";
 import RegionManagment from "./components/SirenControlComponents/RegionComponents/RegionManagment";
 
@@ -39,11 +39,37 @@ const tempTownSirens = [
   { id: 7, name: "Vrsar", state: "radi", activity: false, soundType: "uzbuna" },
 ];
 
+const tempListOfRegions = [
+  {
+    id: 0,
+    activity: false,
+    tempTownSirens,
+  },
+  {
+    id: 1,
+    activity: false,
+    tempTownSirens,
+  },
+];
+
 function App() {
   const [informationValue, setInformationValue] = useState(tempTownSirens);
   const [selectedPanel, setSelectedPanel] = useState(true);
   const [triggerMainAnimationOut, setTriggerMainAnimationOut] = useState("0");
   const [triggerRegionAnimation, setTriggerRegionAnimation] = useState("0");
+
+  //
+  const [sirenInfo, setSirenInfo] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/groups")
+      .then((response) => response.json())
+      .then((data) => {
+        setSirenInfo(data);
+      });
+  }, []);
+
+  //
 
   const navSelector = async (e) => {
     if (!e) {
@@ -66,12 +92,24 @@ function App() {
   };
 
   const printout = () => {
-    console.log(...informationValue);
+    console.log(...sirenInfo);
   };
 
   return (
     <div className="App">
       <Navbar getSelect={navSelector}></Navbar>
+
+      <div className="testConatiner">
+        <h2>API TEST</h2>
+        {sirenInfo.map((siren) => (
+          <div key={siren.id}>
+            {siren.name} {siren.state} {siren.soundType}
+            {siren.activity}
+          </div>
+        ))}
+      </div>
+
+      <button onClick={printout}>PRINT</button>
       {selectedPanel ? (
         <div
           className="Panel"
@@ -80,7 +118,7 @@ function App() {
         >
           <SirenControlPanel
             getData={updateVal}
-            sirenInfo={informationValue}
+            sirenInfo={sirenInfo}
           ></SirenControlPanel>
         </div>
       ) : (
@@ -89,7 +127,10 @@ function App() {
           onAnimationEnd={() => setTriggerRegionAnimation(0)}
           regionpanelmovement={triggerRegionAnimation}
         >
-          <RegionManagment></RegionManagment>
+          <RegionManagment
+            sirenInfo2={informationValue}
+            sirenInfo={tempListOfRegions}
+          ></RegionManagment>
         </div>
       )}
     </div>

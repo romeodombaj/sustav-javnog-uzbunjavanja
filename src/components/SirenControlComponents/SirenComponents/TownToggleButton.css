@@ -15,19 +15,59 @@
   scale: 1.1;
 }
 
-.isActive {
-  animation: 1s buttonActiveAnimation infinite steps(30);
+.singleTownButtonIsActive1 {
+  /* on "UPOZORENJE NA NADOLAZEĆU OPANSOST" selected*/
+  animation: 1s singleTownbuttonActiveAnimation1 linear infinite;
 }
 
-@keyframes buttonActiveAnimation {
+.singleTownButtonIsActive2 {
+  /* on "NEPOSREDNA OPASNOST" selected*/
+  animation: 1s singleTownbuttonActiveAnimation2 linear infinite;
+}
+
+.singleTownButtonIsActive3 {
+  /* on "PRESTANAK OPASNOSTI" selected*/
+  animation: 1s singleTownbuttonActiveAnimation3 linear infinite;
+}
+
+.singleTownButtonIsActive4 {
+  /* on "VATROGASNA UZBUNA" selected*/
+  animation: 1s singleTownbuttonActiveAnimation4 linear infinite;
+}
+
+@keyframes singleTownbuttonActiveAnimation1 {
   0% {
-    box-shadow: 0px 0px 15px rgb(255, 199, 95);
-  }
-  50% {
-    box-shadow: 0px 0px 2px rgb(255, 199, 95);
+    box-shadow: 0px 0px 30px rgb(0, 0, 255, 0.2);
   }
   100% {
-    box-shadow: 0px 0px 15px rgb(255, 199, 95);
+    box-shadow: 0px 0px 30px rgb(0, 0, 255, 1);
+  }
+}
+
+@keyframes singleTownbuttonActiveAnimation2 {
+  0% {
+    box-shadow: 0px 0px 30px rgb(249, 215, 28, 0.2);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgb(249, 215, 28, 1);
+  }
+}
+
+@keyframes singleTownbuttonActiveAnimation3 {
+  0% {
+    box-shadow: 0px 0px 30px rgba(6, 121, 6, 0.2);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgb(7, 195, 7);
+  }
+}
+
+@keyframes singleTownbuttonActiveAnimation4 {
+  0% {
+    box-shadow: 0px 0px 30px rgb(255, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgb(255, 0, 0, 1);
   }
 }
 
@@ -38,7 +78,6 @@
   }
 
   .singleTownButton:hover {
-    background-color: rgb(56, 56, 56);
     scale: 0.9;
   }
 }

@@ -1,0 +1,11 @@
+.sirenTypeFilterStyle {
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 0.8rem;
+  margin: 2rem;
+}
+
+.optionTypeFilter {
+  font-weight: bold;
+  text-align: center;
+}

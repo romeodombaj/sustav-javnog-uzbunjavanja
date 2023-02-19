@@ -4,6 +4,20 @@
   min-width: 100vw;
 }
 
+.testConatiner {
+  width: 80%;
+  background-color: #61dafb;
+  margin: auto;
+  min-height: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   background-color: #3b3f3c;
 }
@@ -29,6 +43,8 @@ body {
 }
 
 .Panel {
+  width: 100%;
+  margin: auto;
 }
 
 .Panel[mainpanelmovement="1"] {
