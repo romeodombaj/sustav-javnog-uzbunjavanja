@@ -2,7 +2,6 @@ import "./TownButtonList.css";
 import TownToggleButton from "./TownToggleButton";
 import React, { useEffect } from "react";
 const TownButtonList = (props) => {
-  //useEffect(() => console.log("hello3"), [props.sirenInfo]);
 
   return (
     <div>
@@ -14,6 +13,7 @@ const TownButtonList = (props) => {
               key={siren.id}
               sirenInfo={siren}
               typeFilterValue={props.typeFilterValue}
+              getData={props.getData}
             ></TownToggleButton>
           );
         })}

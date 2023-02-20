@@ -3,12 +3,10 @@ import "./TownToggleButton.css";
 
 const TownToggleButton = (props) => {
   const [isHovering, setIsHovering] = useState(false);
-  const [townFullClass, setTownFullClass] = useState("singleTownButton");
   const [singleTownClassName, setSingleTownClassName] =
     useState("singleTownButton");
   const [fUpdate, setFUpdate] = useState(false); // force update state
-  const [prevButtonState, setPrevButtonState] = useState(5);
-
+  
   const filterValue = [
     "singleTownButtonIsActive1",
     "singleTownButtonIsActive2",
@@ -21,21 +19,26 @@ const TownToggleButton = (props) => {
   };
 
   const changeActivityStatus = () => {
-    if (props.typeFilterValue == prevButtonState) {
-      props.sirenInfo.activity = !props.sirenInfo.activity;
-      setFUpdate((prevState) => !prevState);
-    } else {
-      setSingleTownClassName(
-        "singleTownButton " + filterValue[props.typeFilterValue]
-      );
-      setPrevButtonState(props.typeFilterValue);
-    }
+    props.sirenInfo.activity = !props.sirenInfo.activity;
+    props.sirenInfo.sound = props.typeFilterValue.toString();
+    setFUpdate((prevState) => !prevState);
   };
 
   useEffect(() => {
+    fetch("http://localhost:8080/api/sirenInfo/" + props.sirenInfo.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        activity: props.sirenInfo.activity,
+        sound: props.sirenInfo.sound,
+      }),
+    });
+
     if (props.sirenInfo.activity) {
       setSingleTownClassName(
-        "singleTownButton " + filterValue[props.typeFilterValue]
+        "singleTownButton " + filterValue[props.sirenInfo.sound]
       );
     } else {
       setSingleTownClassName("singleTownButton");

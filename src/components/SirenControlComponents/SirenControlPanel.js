@@ -2,16 +2,12 @@ import "./SirenControlPanel.css";
 import TownButtonList from "./SirenComponents/TownButtonList";
 import AutoTest from "./AutoTestComponents/AutoTest";
 import SirenTypeFilter from "./SirenComponents/SirenTypeFilter";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../_UI/Button";
 
 const SirenControlPanel = (props) => {
   const [typeFilterValue, setTypeFilterValue] = useState(0);
   const [fUpdate, setFUpdate] = useState(false);
-
-  const passDataToApp = () => {
-    props.getData();
-  };
 
   const typeFilterHandler = (e) => {
     setTypeFilterValue(e);
@@ -19,12 +15,18 @@ const SirenControlPanel = (props) => {
   };
 
   const onActivateAllHandler = () => {
-    props.sirenInfo.map((siren) => (siren.activity = true));
+    props.sirenInfo.map((siren) => {
+      siren.activity = true;
+    });
+
     setFUpdate((prevState) => !prevState);
   };
 
+
   const onDeactivateAllHandler = () => {
-    props.sirenInfo.map((siren) => (siren.activity = false));
+    props.sirenInfo.map((siren) => {
+      siren.activity = false;
+    });
     setFUpdate((prevState) => !prevState);
   };
 
@@ -32,7 +34,6 @@ const SirenControlPanel = (props) => {
     <div className="controlPanelContainer">
       <h2>Control Panel</h2>
       <AutoTest
-        getData={passDataToApp}
         sirenInfo={props.sirenInfo}
         typeFilterValue={typeFilterValue}
       ></AutoTest>

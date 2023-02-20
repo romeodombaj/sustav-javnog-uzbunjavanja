@@ -5,26 +5,10 @@ import "./AutoTest.css";
 const AutoTest = (props) => {
   const [dueDate, setDueDate] = useState();
 
-  const onActivateAllHandler = () => {
-    props.getData();
-  };
-
-  const testFunc = () => {
-    let date = new Date();
-    const month = date.getMonth() + 1;
-    date.setMonth(month);
-
-    let saturday;
-
-    date.setDate(1);
-    while (date.getDay() !== 6) {
-      date.setDate(date.getDate() + 1);
-    }
-
-    console.log(date);
-  };
-
-  useEffect(() => {}, [new Date()]);
+  useEffect(() => {
+    console.log("hey");
+    getFirstSaturday();
+  }, []);
 
   const getFirstSaturday = () => {
     let date = new Date();
@@ -51,11 +35,6 @@ const AutoTest = (props) => {
         *na navedeni datum u navedeno vrijeme <br></br>održavat će se automatsko
         testiranje sirena
       </p>
-      <Button
-        text="Click to Activate all"
-        onClick={onActivateAllHandler}
-      ></Button>
-      <Button text="test" onClick={getFirstSaturday}></Button>
     </div>
   );
 };
