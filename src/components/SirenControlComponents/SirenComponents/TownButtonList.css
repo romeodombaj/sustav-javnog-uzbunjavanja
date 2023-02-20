@@ -1,6 +1,6 @@
 .town-grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   padding: 1rem;
   background-color: rgb(69, 69, 69);
   margin: auto;

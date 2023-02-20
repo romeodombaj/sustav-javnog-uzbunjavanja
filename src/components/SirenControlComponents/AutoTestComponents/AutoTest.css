@@ -1,8 +1,44 @@
 .autoTestContainer {
-  background-color: rgb(69, 69, 69);
+  background-color: rgb(251, 188, 7, 0.7);
+  box-shadow: 2px 2px 5px black;
   padding: 1rem;
   margin: auto;
   margin-top: 2rem;
   width: 80%;
   border-radius: 1.1rem;
+}
+
+.autoTestTimeContainer {
+  min-width: 30%;
+  margin: auto;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.autoTestTime {
+  background-color: aliceblue;
+  min-width: 10%;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  box-shadow: 2px 2px 5px black;
+}
+
+.autoTestContainer:hover {
+  animation: 3s autoTestHoverAnimation linear infinite;
+}
+
+@keyframes autoTestHoverAnimation {
+  0% {
+    background-color: rgba(251, 188, 7, 0.7);
+  }
+  50% {
+    background-color: rgba(251, 188, 7, 1);
+  }
+
+  100% {
+    background-color: rgba(251, 188, 7, 0.7);
+  }
 }

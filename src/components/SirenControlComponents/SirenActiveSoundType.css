@@ -1,0 +1,24 @@
+.soundTypeContainer {
+  background-color: gray;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: auto;
+}
+
+.perTypeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.soundColorWindow {
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+}
+
+.textSoundTypeOutput {
+  margin: 0;
+  padding: 0;
+}

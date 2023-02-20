@@ -24,10 +24,6 @@ const SirenTypeFilter = (props) => {
     props.getFilterValue(e.target.value);
   };
 
-  const print = () => {
-    console.log(...sirenTypesList);
-  };
-
   return (
     <div>
       <select onChange={onFilterHandler} className="sirenTypeFilterStyle">

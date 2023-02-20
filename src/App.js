@@ -57,11 +57,10 @@ function App() {
   const [triggerMainAnimationOut, setTriggerMainAnimationOut] = useState("0");
   const [triggerRegionAnimation, setTriggerRegionAnimation] = useState("0");
   const [triggerFetch, setTriggerFetch] = useState(false);
-  //
   const [sirenInfo, setSirenInfo] = useState([]);
 
   useEffect(() => {
-    console.log("change");
+    console.log("update");
     fetch("http://localhost:8080/api/sirenInfo")
       .then((response) => response.json())
       .then((data) => {
@@ -85,6 +84,12 @@ function App() {
     setSelectedPanel(e);
   };
 
+  const triggerDataRefresh = () => {
+    setTimeout(() => {
+      setTriggerFetch((prevState) => !prevState);
+    }, 100);
+  };
+
   const printout = () => {
     console.log(...sirenInfo);
   };
@@ -92,7 +97,6 @@ function App() {
   return (
     <div className="App">
       <Navbar getSelect={navSelector}></Navbar>
-
       <button onClick={printout}>PRINT</button>
       {selectedPanel ? (
         <div
@@ -100,7 +104,10 @@ function App() {
           onAnimationEnd={() => setTriggerMainAnimationOut(0)}
           mainpanelmovement={triggerMainAnimationOut}
         >
-          <SirenControlPanel sirenInfo={sirenInfo}></SirenControlPanel>
+          <SirenControlPanel
+            triggerDataRefresh={triggerDataRefresh}
+            sirenInfo={sirenInfo}
+          ></SirenControlPanel>
         </div>
       ) : (
         <div

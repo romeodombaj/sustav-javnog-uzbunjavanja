@@ -3,9 +3,14 @@
   font-weight: bold;
   border-radius: 0.8rem;
   margin: 2rem;
+  transition: 0.4s;
 }
 
 .optionTypeFilter {
   font-weight: bold;
   text-align: center;
+}
+
+.sirenTypeFilterStyle:hover {
+  scale: 1.05;
 }

@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./TownToggleButton.css";
+import ErrorWindow from "../../_UI/ErrorWindow";
 
 const TownToggleButton = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   const [singleTownClassName, setSingleTownClassName] =
     useState("singleTownButton");
   const [fUpdate, setFUpdate] = useState(false); // force update state
-  
+  const [triggerError, setTriggerError] = useState(false);
+
   const filterValue = [
     "singleTownButtonIsActive1",
     "singleTownButtonIsActive2",
     "singleTownButtonIsActive3",
     "singleTownButtonIsActive4",
   ];
+
+  const onTriggerErrorWindow = () => {
+    setTriggerError((prevState) => !prevState);
+  };
 
   const onHoverHandler = () => {
     setIsHovering((prevState) => !prevState);
@@ -36,6 +42,11 @@ const TownToggleButton = (props) => {
       }),
     });
 
+    if (props.sirenInfo.state !== "radi" && props.sirenInfo.activity) {
+      props.sirenInfo.activity = false;
+      onTriggerErrorWindow();
+    }
+
     if (props.sirenInfo.activity) {
       setSingleTownClassName(
         "singleTownButton " + filterValue[props.sirenInfo.sound]
@@ -47,6 +58,12 @@ const TownToggleButton = (props) => {
 
   return (
     <div>
+      {triggerError && (
+        <ErrorWindow
+          sirenInfo={props.sirenInfo}
+          closeWindow={onTriggerErrorWindow}
+        ></ErrorWindow>
+      )}
       <button
         onMouseLeave={onHoverHandler}
         onClick={changeActivityStatus}

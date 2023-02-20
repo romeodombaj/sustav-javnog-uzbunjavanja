@@ -6,9 +6,16 @@
   font-weight: bold;
   box-shadow: 2px 2px 5px rgb(0, 0, 0, 1);
   transition: 0.2s;
+  margin-top: 0;
+  width: auto;
 }
 
 .customButton:hover {
   scale: 1.1;
   box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.5);
+}
+
+.customButton:active {
+  scale: 1;
+  background-color: rgb(179, 116, 0);
 }

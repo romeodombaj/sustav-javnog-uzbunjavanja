@@ -1,40 +1,63 @@
 import React, { useState, useEffect } from "react";
-import Button from "../../_UI/Button";
 import "./AutoTest.css";
 
 const AutoTest = (props) => {
-  const [dueDate, setDueDate] = useState();
+  const [dueDate, setDueDate] = useState(new Date());
+
+  const activateTest = () => {
+    props.activate();
+    setTimeout(() => {
+      props.deactivate();
+    }, 10000);
+  };
 
   useEffect(() => {
-    console.log("hey");
-    getFirstSaturday();
+    getFirstSaturday(0);
+    const interval = setInterval(() => {
+      const dt = new Date();
+      if (
+        dt.getMonth() === dueDate.getMonth() &&
+        dt.getDate() === dueDate.getDate() &&
+        dt.getHours() === 12 &&
+        dt.getMinutes() === 0
+      ) {
+        activateTest();
+        getFirstSaturday(0);
+      }
+    }, 30000);
+    return () => clearInterval(interval);
   }, []);
 
-  const getFirstSaturday = () => {
-    let date = new Date();
-    const month = date.getMonth() + 1;
-    date.setMonth(month);
+  //dobivanje prve subote
+  const getFirstSaturday = (mnt) => {
+    const date = new Date();
+    const currentDate = new Date();
 
-    let saturday;
+    const month = date.getMonth() + mnt;
+    date.setMonth(month);
 
     date.setDate(1);
     while (date.getDay() !== 6) {
       date.setDate(date.getDate() + 1);
     }
 
-    setDueDate(date.toLocaleDateString("hr-HR"));
+    if (
+      currentDate.getDate() > date.getDate() &&
+      currentDate.getMonth() === date.getMonth()
+    ) {
+      getFirstSaturday(1);
+    } else {
+      setDueDate(date);
+    }
   };
-
-  const nextAutoTest = new Date("2016-01-04").toLocaleString();
 
   return (
     <div className="autoTestContainer">
-      <h2>TIMER</h2>
-      <h2>{dueDate} // 12:00</h2>
-      <p>
-        *na navedeni datum u navedeno vrijeme <br></br>održavat će se automatsko
-        testiranje sirena
-      </p>
+      <h2>SLJEDEĆE TESTIRANJE :</h2>
+      <div className="autoTestTimeContainer">
+        <h2 className="autoTestTime">{dueDate.toLocaleDateString("hr-HR")}</h2>
+        <h2 className="autoTestTime">12:00</h2>
+      </div>
     </div>
   );
 };
