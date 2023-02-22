@@ -1,5 +1,7 @@
 import "./AddRegionList.css";
 
+// dodavanje regija ** nedovrseno
+
 const AddRegionList = (props) => {
   return (
     <div className="addRegionContainer">

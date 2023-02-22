@@ -1,6 +1,8 @@
 import "./Navbar.css";
 import React, { useState } from "react";
 
+// komponenta vraća navigacijsku traku
+
 const Navbar = (props) => {
   const [selectionStyleClass, setSelectionStyleClass] = useState(
     "selectorV selectorPOS1"

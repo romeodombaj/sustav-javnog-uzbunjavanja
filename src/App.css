@@ -56,8 +56,6 @@ body {
   animation-delay: -0.0625s;
 }
 
-.Panel2 {
-}
 
 .Panel2[regionpanelmovement="1"] {
   animation: 0.25s regionpanelmovement 0.5;

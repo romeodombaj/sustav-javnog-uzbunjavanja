@@ -3,6 +3,8 @@ import RegionList from "./Regions/RegionList";
 import React, { useState } from "react";
 import AddRegion from "./AddRegionComponents/AddRegion";
 
+// panel regija/grupa gdje mozemo grupirati sirene po zelji **nedovrseno
+
 const RegionManagment = (props) => {
   const [isAddingRegion, setIsAddingRegion] = useState(false);
 

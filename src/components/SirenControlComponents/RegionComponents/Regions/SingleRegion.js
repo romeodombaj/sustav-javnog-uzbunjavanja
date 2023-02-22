@@ -1,6 +1,8 @@
 import "./SingleRegion.css";
 import React, { useEffect, useState } from "react";
 
+// pojedinacna regija/grupa
+
 const SingleRegion = (props) => {
   const [currentRegionNameList, setCurrentRegionNameList] = useState();
   const [buttonActiveStateClass, setButtonActiveStateClass] =

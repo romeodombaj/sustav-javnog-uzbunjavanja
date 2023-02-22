@@ -2,6 +2,8 @@ import "./AddRegion.css";
 import TownButtonList from "../../SirenComponents/TownButtonList";
 import AddRegionList from "./AddRegionList";
 
+// dodavanje regija ** nedovrseno
+
 const AddRegion = (props) => {
   const addSelectedRegion = () => {};
 

@@ -4,6 +4,7 @@
   border-radius: 0.8rem;
   margin: 2rem;
   transition: 0.4s;
+  background-color: rgb(215, 215, 215);
 }
 
 .optionTypeFilter {

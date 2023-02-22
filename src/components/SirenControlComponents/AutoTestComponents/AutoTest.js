@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./AutoTest.css";
 
+// aktivacija automatskog testiranja svake prve subote u mjesecu
+
 const AutoTest = (props) => {
   const [dueDate, setDueDate] = useState(new Date());
 
+  // ukoliko je došlo do prve subote aktivira sirenu na 1 minutu
   const activateTest = () => {
     props.activate();
     setTimeout(() => {
       props.deactivate();
-    }, 10000);
+    }, 60000);
   };
 
+  // provjerava svakih 30s da li je trenutno vrijeme kad se mora aktivirati
   useEffect(() => {
     getFirstSaturday(0);
     const interval = setInterval(() => {
@@ -29,6 +33,7 @@ const AutoTest = (props) => {
   }, []);
 
   //dobivanje prve subote
+  //provjerava da li je prosla prva subota ovaj mjesec, ako nije poziva se za sljedeći mjesec
   const getFirstSaturday = (mnt) => {
     const date = new Date();
     const currentDate = new Date();
@@ -51,6 +56,7 @@ const AutoTest = (props) => {
     }
   };
 
+  // ispis datuma i vremena sljedećeg testiranja
   return (
     <div className="autoTestContainer">
       <h2>SLJEDEĆE TESTIRANJE :</h2>

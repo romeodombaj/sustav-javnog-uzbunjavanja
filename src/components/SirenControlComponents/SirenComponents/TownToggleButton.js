@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./TownToggleButton.css";
 import ErrorWindow from "../../_UI/ErrorWindow";
 
+// Pojedinačna sirena - gumb
+
 const TownToggleButton = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   const [singleTownClassName, setSingleTownClassName] =
@@ -9,6 +11,7 @@ const TownToggleButton = (props) => {
   const [fUpdate, setFUpdate] = useState(false); // force update state
   const [triggerError, setTriggerError] = useState(false);
 
+  //odreduje boju animacije ovisno o zvuku sirene
   const filterValue = [
     "singleTownButtonIsActive1",
     "singleTownButtonIsActive2",
@@ -30,6 +33,8 @@ const TownToggleButton = (props) => {
     setFUpdate((prevState) => !prevState);
   };
 
+  // patchanje novih podataka aktivnosti i vrste zvuka, te trigger errora ako nešto ne radi,
+  // vrsi se ako se podaci sirenInfo.activity promjene lokalno
   useEffect(() => {
     fetch("http://localhost:8080/api/sirenInfo/" + props.sirenInfo.id, {
       method: "PATCH",

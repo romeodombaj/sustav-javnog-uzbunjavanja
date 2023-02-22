@@ -1,5 +1,7 @@
 import "./SirenTypeFilter.css";
 
+//filter za vrstu zvuka koji želimo da sirena proizvodi
+
 const SirenTypeFilter = (props) => {
   const sirenTypesList = [
     {

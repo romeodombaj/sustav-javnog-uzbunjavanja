@@ -1,5 +1,7 @@
 import "./ErrorWindow.css";
 
+// prozor koji se prikazuje ako sirena ne radi kako treba
+
 const ErrorWindow = (props) => {
   return (
     <div>

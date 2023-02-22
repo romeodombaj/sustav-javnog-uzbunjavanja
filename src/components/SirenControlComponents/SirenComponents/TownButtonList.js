@@ -2,6 +2,7 @@ import "./TownButtonList.css";
 import TownToggleButton from "./TownToggleButton";
 import React, { useEffect } from "react";
 const TownButtonList = (props) => {
+  // izlistava sve sirene u grid
 
   return (
     <div>

@@ -4,7 +4,7 @@
   font-size: xx-large;
   scale: 1;
   font-weight: bolder;
-  background-color: cyan;
+  background-color: rgb(215, 215, 215);
   margin: 2rem;
   border-radius: 1rem;
 }
@@ -15,7 +15,7 @@
   justify-content: center;
   width: 40%;
   margin: auto;
-  background-color: cyan;
+  background-color: rgb(215, 215, 215);
   padding: 4rem;
   border-radius: 2rem;
   margin-top: 2rem;

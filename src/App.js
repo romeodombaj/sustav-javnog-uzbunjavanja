@@ -6,6 +6,8 @@ import RegionManagment from "./components/SirenControlComponents/RegionComponent
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// hardcodirani podaci korišteni za testiranje
+//frontenda prije izgradnje backenda
 const tempTownSirens = [
   { id: 1, name: "Pula", state: "radi", activity: false, sound: "uzbuna" },
   {
@@ -53,23 +55,33 @@ const tempListOfRegions = [
 ];
 
 function App() {
+  //useState varijable - refresh aplikacije prilikom promijene
   const [selectedPanel, setSelectedPanel] = useState(true);
   const [triggerMainAnimationOut, setTriggerMainAnimationOut] = useState("0");
   const [triggerRegionAnimation, setTriggerRegionAnimation] = useState("0");
   const [triggerFetch, setTriggerFetch] = useState(false);
   const [sirenInfo, setSirenInfo] = useState([]);
 
+  // useEffect pokrece se pokretanjem aplikacije i svakih 5 sekundi, te na trigger
+  // dohvaćamo podatke ("GET")
   useEffect(() => {
-    console.log("update");
+    fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [triggerFetch]);
+
+  const fetchData = () => {
     fetch("http://localhost:8080/api/sirenInfo")
       .then((response) => response.json())
       .then((data) => {
         setSirenInfo(data);
       });
-  }, [triggerFetch]);
+  };
 
+  //navSelector služi za animaciju glavnih prozora prilikom promjene
   //
-
   const navSelector = async (e) => {
     if (!e) {
       setTriggerMainAnimationOut("1");
@@ -84,20 +96,18 @@ function App() {
     setSelectedPanel(e);
   };
 
+  //trigger kojim možemo ponovo dohvatiti podatke
   const triggerDataRefresh = () => {
     setTimeout(() => {
       setTriggerFetch((prevState) => !prevState);
     }, 100);
   };
 
-  const printout = () => {
-    console.log(...sirenInfo);
-  };
 
+  // glavni prikaz komponenti
   return (
     <div className="App">
       <Navbar getSelect={navSelector}></Navbar>
-      <button onClick={printout}>PRINT</button>
       {selectedPanel ? (
         <div
           className="Panel"

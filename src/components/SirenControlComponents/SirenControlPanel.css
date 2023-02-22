@@ -3,12 +3,25 @@
   margin: auto;
 }
 
-.gridContainer {
-}
-
 .functionContainer {
   display: grid;
   grid-template-columns: auto auto auto;
   align-items: center;
   margin: auto;
+}
+
+@media (max-width: 1000px) {
+  .functionContainer {
+    grid-template-columns: auto auto;
+  }
+
+  .functionContainer div:nth-child(3) {
+    grid-column: auto / span 2;
+  }
+
+  .connectColumns {
+  }
+}
+
+.connectColumns {
 }

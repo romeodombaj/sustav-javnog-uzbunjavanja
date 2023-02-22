@@ -1,6 +1,8 @@
 import "./RegionList.css";
 import SingleRegion from "./SingleRegion";
 
+// izlistavanje svih regija
+
 const RegionList = (props) => {
   return (
     <div>

@@ -11,10 +11,12 @@ const SirenControlPanel = (props) => {
   const [typeFilterValue, setTypeFilterValue] = useState(0);
   const [fUpdate, setFUpdate] = useState(false);
 
+  // dohvaćanje vrijendosti filtera
   const typeFilterHandler = (e) => {
     setTypeFilterValue(e);
   };
 
+  // gumb za aktiviranje testa svake prve subote
   const activateTest = () => {
     props.sirenInfo.map((siren) => {
       return (siren.activity = true), (siren.sound = "2");
@@ -23,6 +25,7 @@ const SirenControlPanel = (props) => {
     setFUpdate((prevState) => !prevState);
   };
 
+  // gumb za aktiviranje svih sirena
   const onActivateAllHandler = () => {
     props.sirenInfo.map((siren) => {
       return (
@@ -33,6 +36,7 @@ const SirenControlPanel = (props) => {
     setFUpdate((prevState) => !prevState);
   };
 
+  // gumb za deaktiviranje svih sirena
   const onDeactivateAllHandler = () => {
     props.sirenInfo.map((siren) => {
       return (siren.activity = false);
@@ -40,6 +44,7 @@ const SirenControlPanel = (props) => {
     setFUpdate((prevState) => !prevState);
   };
 
+  // Prikazuje Control Panel
   return (
     <div className="controlPanelContainer">
       <h2>Control Panel</h2>
@@ -67,7 +72,7 @@ const SirenControlPanel = (props) => {
               ></Button>
             </div>
           </div>
-          <SirenActiveSoundType></SirenActiveSoundType>
+          <SirenActiveSoundType className="connectColumns"></SirenActiveSoundType>
         </div>
       </div>
 
