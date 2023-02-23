@@ -6,7 +6,7 @@ const SirenTypeFilter = (props) => {
   const sirenTypesList = [
     {
       id: 0,
-      type: "UOZORENJE NA NADOLAZEĆU OPASNOST",
+      type: "UPOZORENJE NA NADOLAZEĆU OPASNOST",
     },
     {
       id: 1,
